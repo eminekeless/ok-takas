@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OKÜ Takas - Osmaniye Korkut Ata Üniversitesi İkinci El & Takas Platformu</title>
+  <meta name="description" content="Osmaniye Korkut Ata Üniversitesi öğrencileri için özel, hızlı, güvenilir ve kolay ikinci el eşya satış ve takas platformu.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="logo-container" id="logo-btn">
+      <div class="logo-icon">T</div>
+      <div class="logo-text">
+        <span class="logo-title">OKÜ TAKAS</span>
+        <span class="logo-subtitle">Öğrenci Pazarı</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs (Desktop) -->
+    <nav>
+      <button class="nav-link active" data-tab="listings-section">
+        <i data-lucide="shopping-bag" style="width: 18px; height: 18px;"></i>
+        Tüm İlanlar
+      </button>
+      <button class="nav-link" data-tab="add-listing-section">
+        <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i>
+        İlan Ekle
+      </button>
+      <button class="nav-link" data-tab="favorites-section">
+        <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+        Favorilerim
+      </button>
+      <button class="nav-link" data-tab="profile-section">
+        <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+        Profilim
+      </button>
+    </nav>
+
+    <div class="header-right">
+      <button class="btn-theme-toggle" id="theme-toggle" title="Karanlık/Aydınlık Tema">
+        <i data-lucide="moon" id="theme-icon-moon" style="width: 20px; height: 20px;"></i>
+        <i data-lucide="sun" id="theme-icon-sun" style="display: none; width: 20px; height: 20px;"></i>
+      </button>
+      
+      <!-- User Account Info badge -->
+      <div class="user-badge" id="user-badge-btn">
+        <div class="user-avatar" id="header-avatar">?</div>
+        <span id="header-username">Giriş Yap</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation (Mobile Bottom Bar) -->
+  <div class="mobile-nav">
+    <a href="#" class="mobile-nav-link active" data-tab="listings-section">
+      <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
+      <span>İlanlar</span>
+    </a>
+    <a href="#" class="mobile-nav-link" data-tab="add-listing-section">
+      <i data-lucide="plus-circle" style="width: 20px; height: 20px;"></i>
+      <span>İlan Ver</span>
+    </a>
+    <a href="#" class="mobile-nav-link" data-tab="favorites-section">
+      <i data-lucide="heart" style="width: 20px; height: 20px;"></i>
+      <span>Favoriler</span>
+    </a>
+    <a href="#" class="mobile-nav-link" data-tab="profile-section">
+      <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+      <span>Profil</span>
+    </a>
+  </div>
+
+  <!-- Main Content Area -->
+  <main>
+
+    <!-- SECTION: LISTINGS / HOME -->
+    <section id="listings-section" class="app-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Kampüsün Güvenli Alışveriş Platformu</h1>
+          <p class="hero-subtitle">OKÜ öğrencileri arasında hızlı, ulaşılabilir ve güvenilir takas veya ikinci el alışveriş yapın.</p>
+        </div>
+      </div>
+
+      <div class="search-filter-bar">
+        <!-- Search bar -->
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon" style="width: 20px; height: 20px;"></i>
+          <input type="text" id="search-input" class="search-input" placeholder="Ürün adı, açıklama veya ilan no ile arayın...">
+        </div>
+
+        <!-- Categories horizontal list -->
+        <div class="categories-container" id="category-filters">
+          <button class="category-chip active" data-category="all">Tümü</button>
+          <button class="category-chip" data-category="Elektronik">Elektronik</button>
+          <button class="category-chip" data-category="Kitap & Kırtasiye">Kitap & Kırtasiye</button>
+          <button class="category-chip" data-category="Ev & Yurt Eşyası">Ev & Yurt Eşyası</button>
+          <button class="category-chip" data-category="Spor">Spor</button>
+          <button class="category-chip" data-category="Diğer">Diğer</button>
+        </div>
+      </div>
+
+      <!-- Listings Grid -->
+      <div class="listings-grid" id="listings-container">
+        <!-- Dynamic Listings Here -->
+      </div>
+      
+      <!-- Empty state if no listings -->
+      <div class="empty-state" id="listings-empty" style="display: none;">
+        <i data-lucide="shopping-bag" class="empty-state-icon"></i>
+        <h3 class="empty-state-title">İlan Bulunamadı</h3>
+        <p class="empty-state-desc">Arama kriterlerinize uygun aktif ilan bulunamadı. Farklı bir arama yapmayı deneyebilirsiniz.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: ADD LISTING -->
+    <section id="add-listing-section" class="app-section">
+      <div class="section-title-container">
+        <h2 class="section-title">Yeni İlan Oluştur</h2>
+      </div>
+
+      <div class="listings-table-container" style="padding: 2rem; max-width: 800px; margin: 0 auto;">
+        <form id="add-listing-form">
+          <div class="form-group">
+            <label for="new-product-name">Ürün Adı *</label>
+            <input type="text" id="new-product-name" class="form-control" placeholder="Örn: Çalışma Masası Lambası, Kırık Kalp Romanı" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="new-product-category">Kategori *</label>
+              <select id="new-product-category" class="form-control" required>
+                <option value="" disabled selected>Kategori Seçiniz</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Kitap & Kırtasiye">Kitap & Kırtasiye</option>
+                <option value="Ev & Yurt Eşyası">Ev & Yurt Eşyası</option>
+                <option value="Spor">Spor</option>
+                <option value="Diğer">Diğer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="new-product-price">Fiyat veya Takas Türü *</label>
+              <input type="text" id="new-product-price" class="form-control" placeholder="Örn: 250 TL veya Sadece Takas" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="new-product-desc">Ürün Açıklaması *</label>
+            <textarea id="new-product-desc" class="form-control" rows="4" placeholder="Ürünün durumu, kullanım süresi veya takas teklif detaylarını yazınız..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Ürün Resmi (Seçiniz) *</label>
+            <div class="image-presets" id="image-presets-container">
+              <!-- Presets automatically filled in app.js -->
+            </div>
+            <input type="hidden" id="new-product-image-val" value="">
+          </div>
+
+          <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 10px;">
+            <button type="button" class="btn btn-secondary" id="btn-cancel-listing">İptal</button>
+            <button type="submit" class="btn btn-primary">İlanı Yayınla</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECTION: FAVORITES -->
+    <section id="favorites-section" class="app-section">
+      <div class="section-title-container">
+        <h2 class="section-title">Favori İlanlarım</h2>
+      </div>
+
+      <div class="listings-grid" id="favorites-container">
+        <!-- Dynamic Favorite Listings Here -->
+      </div>
+
+      <div class="empty-state" id="favorites-empty" style="display: none;">
+        <i data-lucide="heart" class="empty-state-icon" style="color: var(--text-muted)"></i>
+        <h3 class="empty-state-title">Favori İlanınız Yok</h3>
+        <p class="empty-state-desc">İlginizi çeken ilanları üzerindeki kalp ikonuna tıklayarak favorilerinize ekleyebilirsiniz.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: PROFILE & USER DASHBOARD -->
+    <section id="profile-section" class="app-section">
+      <div class="profile-wrapper" id="authenticated-profile" style="display: none;">
+        <!-- Left Side: User Info -->
+        <div class="profile-card">
+          <div class="profile-avatar-large" id="profile-avatar">U</div>
+          <h3 class="profile-name" id="profile-name-display">Ahmet Yılmaz</h3>
+          <span class="profile-role">OKÜ Öğrencisi</span>
+
+          <div class="profile-details">
+            <div class="profile-details-item">
+              <span class="profile-details-label">E-posta Adresi</span>
+              <div class="profile-details-value" id="profile-email-display">ahmet@ogrenci.oku.edu.tr</div>
+            </div>
+            <div class="profile-details-item">
+              <span class="profile-details-label">Öğrenci Numarası</span>
+              <div class="profile-details-value" id="profile-id-display">2022100203001</div>
+            </div>
+            <div class="profile-details-item">
+              <span class="profile-details-label">Telefon Numarası</span>
+              <div class="profile-details-value" id="profile-phone-display">0555 123 45 67</div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" id="btn-logout">
+            <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+            Çıkış Yap
+          </button>
+        </div>
+
+        <!-- Right Side: User Listings Management -->
+        <div class="profile-content">
+          <div class="section-title-container">
+            <h2 class="section-title">İlanlarımı Yönet</h2>
+          </div>
+
+          <div class="listings-table-container">
+            <table class="listings-table" id="my-listings-table">
+              <thead>
+                <tr>
+                  <th>İlan Bilgisi</th>
+                  <th>Kategori</th>
+                  <th>Fiyat</th>
+                  <th>İlan No / Tarih</th>
+                  <th>Durum (Değiştir) *</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="my-listings-tbody">
+                <!-- User's own listings filled dynamically -->
+              </tbody>
+            </table>
+            
+            <div class="empty-state" id="my-listings-empty" style="display: none; border: none; border-radius: 0;">
+              <i data-lucide="tag" class="empty-state-icon"></i>
+              <h3 class="empty-state-title">Yayınlanmış İlanınız Yok</h3>
+              <p class="empty-state-desc">Satmak veya takas etmek istediğiniz bir ürünü ilan ekleme kısmından hemen paylaşabilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unauthorized Profile State (Giriş Yapılması Gerektiğinde) -->
+      <div class="empty-state" id="unauthorized-profile" style="max-width: 600px; margin: 0 auto;">
+        <i data-lucide="lock" class="empty-state-icon"></i>
+        <h3 class="empty-state-title">Profilinizi Görüntülemek İçin Giriş Yapın</h3>
+        <p class="empty-state-desc">İlan vermek, ilanlarınızı yönetmek ve favorilerinize eklemek için öğrenci bilgilerinizle kayıt olmanız gerekmektedir.</p>
+        <button class="btn btn-primary" id="btn-show-auth">Giriş Yap / Kayıt Ol</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: DETAILED PRODUCT VIEW -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-product-title">Ürün Detayları</h3>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button class="btn-favorite-toggle" id="modal-btn-favorite" title="Favorilere Ekle" style="position: static; width: 36px; height: 36px;">
+            <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+          </button>
+          <button class="modal-close" id="btn-close-detail-modal">
+            <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="detail-layout">
+          <img src="" alt="Ürün Resmi" id="modal-product-img" class="detail-img">
+          
+          <div class="detail-main">
+            <div class="logo-text">
+              <h2 class="detail-title" id="modal-product-name">Ürün Başlığı</h2>
+              <span id="modal-product-cat" class="badge badge-category" style="align-self: flex-start; margin-top: 5px;">Kategori</span>
+            </div>
+            <div class="detail-price" id="modal-product-price">0.00 TL</div>
+          </div>
+
+          <div class="detail-desc" id="modal-product-desc">
+            Ürün açıklaması buraya yüklenecek.
+          </div>
+
+          <!-- Product meta properties -->
+          <div style="display: flex; gap: 20px; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 10px;">
+            <div><strong>İlan ID:</strong> <span id="modal-product-id" style="font-family: monospace;">-</span></div>
+            <div><strong>Yayınlanma Tarihi:</strong> <span id="modal-product-date">-</span></div>
+            <div><strong>Durum:</strong> <span id="modal-product-status-badge" class="badge">-</span></div>
+          </div>
+
+          <!-- Seller Info Card -->
+          <div class="seller-card">
+            <h4 class="seller-title">Satıcı Bilgileri</h4>
+            <div class="seller-info-row">
+              <div class="seller-info-label">Ad Soyad:</div>
+              <div class="seller-info-value" id="modal-seller-name">-</div>
+            </div>
+            <div class="seller-info-row">
+              <div class="seller-info-label">Öğrenci No:</div>
+              <div class="seller-info-value" id="modal-seller-no">-</div>
+            </div>
+            <div class="seller-info-row">
+              <div class="seller-info-label">Telefon:</div>
+              <div class="seller-info-value" id="modal-seller-phone">-</div>
+            </div>
+            <div class="seller-info-row">
+              <div class="seller-info-label">E-posta:</div>
+              <div class="seller-info-value" id="modal-seller-email">-</div>
+            </div>
+
+            <div class="seller-actions">
+              <a href="#" target="_blank" class="btn btn-whatsapp" id="btn-action-whatsapp">
+                <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+                WhatsApp
+              </a>
+              <a href="#" class="btn btn-call" id="btn-action-call">
+                <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                Hemen Ara
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AUTH / SIGNUP & LOGIN -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Öğrenci Girişi / Kayıt</h3>
+        <button class="modal-close" id="btn-close-auth-modal">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="auth-form">
+          <div class="form-group">
+            <label for="auth-name">Ad Soyad *</label>
+            <input type="text" id="auth-name" class="form-control" placeholder="Ad ve Soyadınızı girin" required>
+          </div>
+
+          <div class="form-group">
+            <label for="auth-email">Öğrenci E-posta *</label>
+            <input type="email" id="auth-email" class="form-control" placeholder="örn: ahmet@ogrenci.oku.edu.tr" required>
+            <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; display: block;">
+              Sadece geçerli bir üniversite öğrenci e-postası giriniz.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="auth-student-id">Öğrenci Numarası *</label>
+            <input type="text" id="auth-student-id" class="form-control" placeholder="13 haneli öğrenci numaranız" minlength="10" maxlength="15" required>
+          </div>
+
+          <div class="form-group">
+            <label for="auth-phone">Telefon Numarası *</label>
+            <input type="tel" id="auth-phone" class="form-control" placeholder="05XX XXX XX XX" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" style="margin-top: 1.5rem;">
+            Devam Et & Giriş Yap
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 OKÜ Takas - Osmaniye Korkut Ata Üniversitesi Öğrencileri Yardımlaşma Platformu</p>
+    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Bu uygulama OKÜ öğrencileri arasında güvenli satışı ve takası teşvik etmek amacıyla prototiplenmiştir.</p>
+  </footer>
+
+  <!-- App Logic script -->
+  <script src="app.js"></script>
+</body>
+</html>
