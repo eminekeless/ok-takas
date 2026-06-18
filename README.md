@@ -19,4 +19,4 @@ Bu uygulama *sunucu kurulumu gerektirmeden* doğrudan tarayıcı üzerinden çal
 3. Ya da terminal/komut satırından python yerel sunucusunu çalıştırabilirsiniz:
 ••*bash
 python -m http.server 8000
-Ardından tarayıcınızdan 'http://localhost:8080" adresine gidin.
+Ardından tarayıcınızdan 'http://localhost:8000" adresine gidin.
